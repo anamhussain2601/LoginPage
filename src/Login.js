@@ -2,26 +2,19 @@ import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
+import { connect } from "react-redux";
+
+
 class Login extends Component {
   constructor(props) {
     super(props);
     console.log(props);
+    this.props.loginHandler()
+
     this.state = {
       email: "",
       password: "",
-      login: null,
-      // UserDetails: [
-      //   {
-      //     name: "anam",
-      //     email: "anam@",
-      //     password: "123"
-      //   },
-      //   {
-      //     name: "salla",
-      //     email: "salla@",
-      //     password: "123"
-      //   }
-      // ]
+      login: null
     };
   }
   handleEmailInput = e => {
@@ -35,10 +28,14 @@ class Login extends Component {
     });
   };
   handleLogin = () => {
-    console.log(this.props.UserDetails,'eqjdqihdqoidjqoidhqodhodqhuse')
+
     this.setState({
       login: false
     });
+    // this.props.loginHandler();
+
+    console.log(this.props.UserDetails,'in login')
+
     for (let i = 0; i <= this.props.UserDetails.length; i++) {
       let data = this.props.UserDetails[i];
       if (this.state.email === data.email) {
@@ -109,4 +106,19 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapStateToProps =(state)=>{
+  return {
+    UserDetails: state.UserDetails
+   };
+};
+
+const mapDispatchToProps =(dispatch)=>{
+  return {
+    loginHandler: () => dispatch({ type: "LOGIN"  })
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Login);

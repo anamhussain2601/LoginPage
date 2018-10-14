@@ -9,21 +9,20 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      UserDetails: [],
       showLoginComponent: false,
       showSignUpComponent: true
     };
   }
 
-  addUserDetailHandler = singupData => {
-    this.setState({
-      UserDetails: [...this.state.UserDetails, singupData]
-    });
-    this.setState({
-      showLoginComponent: true,
-      showSignUpComponent: false
-    });
-  };
+  // addUserDetailHandler = singupData => {
+  //   this.setState({
+  //     UserDetails: [...this.state.UserDetails, singupData]
+  //   });
+  //   this.setState({
+  //     showLoginComponent: true,
+  //     showSignUpComponent: false
+  //   });
+  // };
   handleSignUpPage = () => {
     this.setState({
       showSignUpComponent: true,
@@ -43,20 +42,19 @@ class App extends Component {
 
     return (
       <div>
-        <div>{/* <Link to="/signup">Sign Up</Link> */}</div>
-        {/* <Route exact path="/" component={Login} /> */}
-        {/* <Route exact path="/signup" component={SignUp} 
-        render ={()=> <SignUp UserDetails ={this.addUserDetailHandler}/>} /> */}
+        <div><Link to="/signup">Sign Up</Link></div>
+        <div><Link to="/login">Login</Link></div>
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/signup" component={SignUp} />       
 
-        {this.state.showSignUpComponent ? (
+        {/* {this.state.showSignUpComponent ? (
           <div>
-            <SignUp addUserDetailHandler={this.addUserDetailHandler} />
+            <SignUp />
             <Button
               variant="contained"
               color="primary"
               onClick={this.handleLoginPage}
             >
-              {" "}
               Login
             </Button>
           </div>
@@ -66,7 +64,7 @@ class App extends Component {
 
         {this.state.showLoginComponent ? (
           <div>
-            <Login UserDetails={this.state.UserDetails} />
+            <Login  />
             <Button
               variant="contained"
               color="primary"
@@ -76,7 +74,7 @@ class App extends Component {
               SignUp
             </Button>
           </div>
-        ) : null}
+        ) : null} */}
       </div>
     );
   }

@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
-import {unregister} from './serviceWorker'
+import { connect } from "react-redux";
+
+let obj =[]
 
 class SignUp extends Component {
   constructor(props) {
@@ -32,12 +34,12 @@ class SignUp extends Component {
     });
   };
   OnSubmit = () => {
-    let obj = {
+     obj = {
       name: this.state.name,
       email: this.state.email,
       password: this.state.password
     };
-    this.props.addUserDetailHandler(obj);
+    this.props.addUserDetailHandler();
 
     this.setState({
       name:'',
@@ -47,7 +49,8 @@ class SignUp extends Component {
     })
   };
   render() {
-    console.log(this.state.UserDetails);
+    console.log(this.props.UserDetails,'in signup')
+
     return (
       <div
         style={{
@@ -95,4 +98,19 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp;
+const mapStateToProps = state => {
+  return {
+   UserDetails: state.UserDetails
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    addUserDetailHandler: () => dispatch({ type: "ADD_ENTRY" , userdata : obj  })
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SignUp);
