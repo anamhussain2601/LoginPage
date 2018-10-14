@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Login from "./Login";
 import SignUp from "./SignUp";
+import Button from "@material-ui/core/Button";
+
 import { Route, Link } from "react-router-dom";
 
 class App extends Component {
@@ -22,12 +24,20 @@ class App extends Component {
       showSignUpComponent: false
     });
   };
-  handlePage = () => {
+  handleSignUpPage = () => {
     this.setState({
       showSignUpComponent: true,
       showLoginComponent: false
     });
   };
+
+  handleLoginPage = () => {
+    this.setState({
+      showSignUpComponent: false,
+      showLoginComponent: true
+    });
+  };
+
   render() {
     console.log(this.state.UserDetails);
 
@@ -37,16 +47,35 @@ class App extends Component {
         {/* <Route exact path="/" component={Login} /> */}
         {/* <Route exact path="/signup" component={SignUp} 
         render ={()=> <SignUp UserDetails ={this.addUserDetailHandler}/>} /> */}
-        <button onClick={this.handlePage}> SignUp</button>
 
         {this.state.showSignUpComponent ? (
-          <SignUp addUserDetailHandler={this.addUserDetailHandler} />
+          <div>
+            <SignUp addUserDetailHandler={this.addUserDetailHandler} />
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={this.handleLoginPage}
+            >
+              {" "}
+              Login
+            </Button>
+          </div>
         ) : (
           <div style={{ alignItems: "center" }}>Login to continue</div>
         )}
 
         {this.state.showLoginComponent ? (
-          <Login UserDetails={this.state.UserDetails} />
+          <div>
+            <Login UserDetails={this.state.UserDetails} />
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={this.handleSignUpPage}
+            >
+              {" "}
+              SignUp
+            </Button>
+          </div>
         ) : null}
       </div>
     );
