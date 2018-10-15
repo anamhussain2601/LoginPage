@@ -45,14 +45,12 @@ class Login extends Component {
           });
           console.log("success");
           break;
-        } else if (this.state.password !== data.password) {
+        } 
+        else if (this.state.password !== data.password) {
           console.log("fail");
         }
         break;
-      } else {
-        console.log("failed bhaisaab ");
       }
-      break;
     }
 
     this.setState({
