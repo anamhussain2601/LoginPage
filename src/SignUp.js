@@ -2,21 +2,20 @@ import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
-import * as actionTypes from './store/actions';
+import * as actionTypes from "./store/actions";
 
 import { connect } from "react-redux";
 
-let obj =[]
+let obj = [];
 
 class SignUp extends Component {
   constructor(props) {
     super(props);
-    console.log(props);
     this.state = {
       name: "",
       email: "",
       password: "",
-      showLoginPage:false
+      showLoginPage: false
     };
   }
 
@@ -36,7 +35,7 @@ class SignUp extends Component {
     });
   };
   OnSubmit = () => {
-     obj = {
+    obj = {
       name: this.state.name,
       email: this.state.email,
       password: this.state.password
@@ -44,15 +43,13 @@ class SignUp extends Component {
     this.props.addUserDetailHandler();
 
     this.setState({
-      name:'',
-      email:'',
-      password:'',
-      showLoginPage:true
-    })
+      name: "",
+      email: "",
+      password: "",
+      showLoginPage: true
+    });
   };
   render() {
-    console.log(this.props.UserDetails,'in signup')
-
     return (
       <div
         style={{
@@ -93,8 +90,6 @@ class SignUp extends Component {
         <Button variant="contained" color="primary" onClick={this.OnSubmit}>
           Sign Up
         </Button>
-
-        
       </div>
     );
   }
@@ -102,13 +97,14 @@ class SignUp extends Component {
 
 const mapStateToProps = state => {
   return {
-   UserDetails: state.UserDetails
+    UserDetails: state.UserDetails
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    addUserDetailHandler: () => dispatch({ type: actionTypes.ADD_ENTRY , userdata : obj  })
+    addUserDetailHandler: () =>
+      dispatch({ type: actionTypes.ADD_ENTRY, userdata: obj })
   };
 };
 

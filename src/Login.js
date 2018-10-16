@@ -1,16 +1,14 @@
 import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import * as actionTypes from './store/actions';
+import * as actionTypes from "./store/actions";
 
 import { connect } from "react-redux";
-
 
 class Login extends Component {
   constructor(props) {
     super(props);
-    console.log(props);
-    this.props.loginHandler()
+    this.props.loginHandler();
 
     this.state = {
       email: "",
@@ -29,14 +27,11 @@ class Login extends Component {
     });
   };
   handleLogin = () => {
-
     this.setState({
       login: false
     });
+
     // this.props.loginHandler();
-
-    console.log(this.props.UserDetails,'in login')
-
     // for (let i = 0; i <= this.props.UserDetails.length; i++) {
     //   let data = this.props.UserDetails[i];
     //   console.log(data ,'data', this.state.email,'emial' )
@@ -47,7 +42,7 @@ class Login extends Component {
     //       });
     //       console.log("success");
     //       break;
-    //     } 
+    //     }
     //     else if (this.state.password !== data.password) {
     //       console.log("fail");
     //     }
@@ -55,12 +50,14 @@ class Login extends Component {
     //   }
     // }
 
-    let isLogin = this.props.UserDetails.some((user)=>{
-      return user.email ===this.state.email && user.password ===this.state.password;
+    let isLogin = this.props.UserDetails.some(user => {
+      return (
+        user.email === this.state.email && user.password === this.state.password
+      );
     });
 
-    if(isLogin){
-      this.setState({login: true});
+    if (isLogin) {
+      this.setState({ login: true });
     }
 
     this.setState({
@@ -102,27 +99,27 @@ class Login extends Component {
           Login
         </Button>
 
-        {(this.state.login !== null )? 
-         this.state.login ? (
-          <div>Login Successful</div>
-        ) :  (!this.state.login ?
-          <div>Incorrect email or password</div>
-          :null ) 
-        :null}
+        {this.state.login !== null ? (
+          this.state.login ? (
+            <div>Login Successful</div>
+          ) : !this.state.login ? (
+            <div>Incorrect email or password</div>
+          ) : null
+        ) : null}
       </div>
     );
   }
 }
 
-const mapStateToProps =(state)=>{
+const mapStateToProps = state => {
   return {
     UserDetails: state.UserDetails
-   };
+  };
 };
 
-const mapDispatchToProps =(dispatch)=>{
+const mapDispatchToProps = dispatch => {
   return {
-    loginHandler: () => dispatch({ type: actionTypes.LOGIN  })
+    loginHandler: () => dispatch({ type: actionTypes.LOGIN })
   };
 };
 
