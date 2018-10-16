@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
+import * as actionTypes from './store/actions';
+
 import { connect } from "react-redux";
 
 let obj =[]
@@ -106,7 +108,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addUserDetailHandler: () => dispatch({ type: "ADD_ENTRY" , userdata : obj  })
+    addUserDetailHandler: () => dispatch({ type: actionTypes.ADD_ENTRY , userdata : obj  })
   };
 };
 

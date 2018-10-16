@@ -31,6 +31,7 @@ class App extends Component {
   };
 
   handleLoginPage = () => {
+    console.log('hanldeLoginPage')
     this.setState({
       showSignUpComponent: false,
       showLoginComponent: true
@@ -38,25 +39,19 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state.UserDetails);
 
     return (
       <div>
-        <div><Link to="/signup">Sign Up</Link></div>
-        <div><Link to="/login">Login</Link></div>
+        {/* <div><Link to="/signup" onClick={this.handleLoginPage}>Sign Up</Link></div>
+        <div><Link to="/login" onClick={this.handleSignUpPage}>Login</Link></div>
         <Route exact path="/login" component={Login} />
-        <Route exact path="/signup" component={SignUp} />       
+        <Route exact path="/signup" component={SignUp} />        */}
 
-        {/* {this.state.showSignUpComponent ? (
+        {this.state.showSignUpComponent ? (
           <div>
-            <SignUp />
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={this.handleLoginPage}
-            >
-              Login
-            </Button>
+           <Route exact path="/login" component={Login} />
+
+           <div><Link to="/signup" onClick={this.handleLoginPage}>Sign Up</Link></div>
           </div>
         ) : (
           <div style={{ alignItems: "center" }}>Login to continue</div>
@@ -64,17 +59,10 @@ class App extends Component {
 
         {this.state.showLoginComponent ? (
           <div>
-            <Login  />
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={this.handleSignUpPage}
-            >
-              {" "}
-              SignUp
-            </Button>
+           <Route exact path="/signup" component={SignUp} />
+           <div><Link to="/login" onClick={this.handleSignUpPage}>Login</Link></div>
           </div>
-        ) : null} */}
+        ) : null}
       </div>
     );
   }

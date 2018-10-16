@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import * as actionTypes from './store/actions';
 
 import { connect } from "react-redux";
 
@@ -36,21 +37,30 @@ class Login extends Component {
 
     console.log(this.props.UserDetails,'in login')
 
-    for (let i = 0; i <= this.props.UserDetails.length; i++) {
-      let data = this.props.UserDetails[i];
-      if (this.state.email === data.email) {
-        if (this.state.password === data.password) {
-          this.setState({
-            login: true
-          });
-          console.log("success");
-          break;
-        } 
-        else if (this.state.password !== data.password) {
-          console.log("fail");
-        }
-        break;
-      }
+    // for (let i = 0; i <= this.props.UserDetails.length; i++) {
+    //   let data = this.props.UserDetails[i];
+    //   console.log(data ,'data', this.state.email,'emial' )
+    //   if (this.state.email === data.email) {
+    //     if (this.state.password === data.password) {
+    //       this.setState({
+    //         login: true
+    //       });
+    //       console.log("success");
+    //       break;
+    //     } 
+    //     else if (this.state.password !== data.password) {
+    //       console.log("fail");
+    //     }
+    //     break;
+    //   }
+    // }
+
+    let isLogin = this.props.UserDetails.some((user)=>{
+      return user.email ===this.state.email && user.password ===this.state.password;
+    });
+
+    if(isLogin){
+      this.setState({login: true});
     }
 
     this.setState({
@@ -112,7 +122,7 @@ const mapStateToProps =(state)=>{
 
 const mapDispatchToProps =(dispatch)=>{
   return {
-    loginHandler: () => dispatch({ type: "LOGIN"  })
+    loginHandler: () => dispatch({ type: actionTypes.LOGIN  })
   };
 };
 
