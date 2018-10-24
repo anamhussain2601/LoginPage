@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import BookList from "./BookList";
 import * as actionTypes from "./store/actions";
 
 import { connect } from "react-redux";
@@ -31,24 +32,6 @@ class Login extends Component {
       login: false
     });
 
-    // this.props.loginHandler();
-    // for (let i = 0; i <= this.props.UserDetails.length; i++) {
-    //   let data = this.props.UserDetails[i];
-    //   console.log(data ,'data', this.state.email,'emial' )
-    //   if (this.state.email === data.email) {
-    //     if (this.state.password === data.password) {
-    //       this.setState({
-    //         login: true
-    //       });
-    //       console.log("success");
-    //       break;
-    //     }
-    //     else if (this.state.password !== data.password) {
-    //       console.log("fail");
-    //     }
-    //     break;
-    //   }
-    // }
 
     let isLogin = this.props.UserDetails.some(user => {
       return (
@@ -101,7 +84,10 @@ class Login extends Component {
 
         {this.state.login !== null ? (
           this.state.login ? (
-            <div>Login Successful</div>
+            <div>Login Successful
+              <BookList/>
+            </div>
+
           ) : !this.state.login ? (
             <div>Incorrect email or password</div>
           ) : null
