@@ -3,6 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import Loading from "./Loading";
 import BookDetails from "./BookDetails";
 
+
 const url = "https://www.googleapis.com/books/v1/volumes?q=";
 class BookList extends Component {
   constructor(props) {
@@ -62,7 +63,7 @@ class BookList extends Component {
 
         {this.state.loading ? (
           <BookDetails bookDetails={this.state.bookDetails} />
-          ) : (null
+          ) : (<Loading/>
         )}
       </div>
     );

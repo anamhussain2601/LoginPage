@@ -1,0 +1,43 @@
+.row {
+  max-width: 114rem;
+  margin: 0 auto;
+}
+.row:not(:last-child) {
+  margin-bottom: 8rem;
+}
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.row [class^="col-"] {
+  float: left;
+}
+.row [class^="col-"]:not(:last-child) {
+  margin-right: 6rem;
+}
+
+/* .row .col-1-of-3 {
+  width: calc((100% - 2 * 6rem) / 3);
+} */
+
+.loading{
+    font-size: 1.6rem;
+    color: black;
+
+}
+
+.composition {
+  position: relative;
+}
+.composition__photo {
+  width: 40%;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.4);
+  border-radius: 2px;
+  position: absolute;
+  margin-bottom: 1.5rem 
+}
+.composition__photo--p {
+  left: 0;
+  top: -2rem;
+}
